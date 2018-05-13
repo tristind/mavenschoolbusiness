@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ec287873-d740-410d-a7f1-12dc8542b3df" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/wercker.yml" beforeDir="false" afterPath="$PROJECT_DIR$/wercker.yml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -270,15 +268,15 @@
       <updated>1526145679388</updated>
       <workItem from="1526145683753" duration="2881000" />
       <workItem from="1526148747530" duration="9000" />
-      <workItem from="1526222866822" duration="210000" />
+      <workItem from="1526222866822" duration="529000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3100000" />
+    <option name="totallyTimeSpent" value="3419000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="506" y="21" width="1296" height="1000" extended-state="0" />
+    <frame x="506" y="21" width="1296" height="1000" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
