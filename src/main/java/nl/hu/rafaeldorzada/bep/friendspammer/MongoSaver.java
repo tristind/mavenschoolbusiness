@@ -2,12 +2,15 @@ package nl.hu.rafaeldorzada.bep.friendspammer;
 
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Iterator;
+
 public class MongoSaver {
-	
+
 	public static boolean saveEmail(String to, String from, String subject, String text, Boolean html) {
 		Logger logger = LoggerFactory.getLogger(MongoSaver.class);
 		boolean success = true;
@@ -31,8 +34,16 @@ public class MongoSaver {
 		return success;
  		
 	}
-	
-	
+
+	public Iterator<Document> getAllMessages() {
+		MongoConfig mongoconfig = new MongoConfig();
+		MongoCollection<Document> c = mongoconfig.getConnection().getCollection("email");
+
+		Iterator<Document> it = c.find().iterator();
+
+		return it;
+	}
+
 	public static void main(String ...args) {
 		Logger logger = LoggerFactory.getLogger("test");
 		logger.info("test");
