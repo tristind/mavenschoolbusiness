@@ -6,7 +6,6 @@ import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.net.UnknownHostException;
 
 public class MongoSaver {
 	
@@ -34,7 +33,7 @@ public class MongoSaver {
 			c.insertOne(doc);
 		} catch (MongoException mongoException) {
 			logger.info("XXXXXXXXXXXXXXXXXX ERROR WHILE SAVING TO MONGO XXXXXXXXXXXXXXXXXXXXXXXXXX");
-			mongoException.printStackTrace();
+			logger.info(mongoException.getMessage());
 			success = false;
 		}
 		

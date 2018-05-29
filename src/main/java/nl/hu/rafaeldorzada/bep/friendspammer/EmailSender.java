@@ -1,13 +1,19 @@
 package nl.hu.rafaeldorzada.bep.friendspammer;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import javax.mail.MessagingException;
 
 public class EmailSender {
-	
-	public static void sendEmail(String subject, String to, String messageBody, boolean asHtml) {
+	private EmailSender() {
+		throw new IllegalStateException("Utility class");
+	}
+	public static void sendEmail(String subject, String to, String messageBody, boolean asHtml) throws MessagingException {
 
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.mailtrap.io");
@@ -19,7 +25,9 @@ public class EmailSender {
 
 		Session session = Session.getInstance(props,
 				  new Authenticator() {
+					  @Override
 					protected PasswordAuthentication getPasswordAuthentication() {
+
 						return new PasswordAuthentication(username, password);
 					}
 				  });
@@ -41,12 +49,12 @@ public class EmailSender {
 			MongoSaver.saveEmail(to, "spammer@spamer.com", subject, messageBody, asHtml);
 
 		} catch (MessagingException e) {
-			throw new RuntimeException(e);
+			throw new MessagingException();
 		}
 	}
 
-	public static void sendEmail(String subject, String[] toList, String messageBody, boolean asHtml) {
-
+	public static void sendEmail(String subject, String[] toList, String messageBody, boolean asHtml) throws MessagingException {
+		Logger logger = LoggerFactory.getLogger(MongoSaver.class);
 		Properties props = new Properties();
 		props.put("mail.smtp.host", "smtp.mailtrap.io");
 		props.put("mail.smtp.port", "2525");
@@ -57,6 +65,7 @@ public class EmailSender {
 
 		Session session = Session.getInstance(props,
 				  new Authenticator() {
+					@Override
 					protected PasswordAuthentication getPasswordAuthentication() {
 						return new PasswordAuthentication(username, password);
 					}
@@ -77,12 +86,11 @@ public class EmailSender {
 					message.setText(messageBody);	
 				}
 				Transport.send(message);
-	
-				System.out.println("Done");
+				logger.info("Done");
 			}
 
 		} catch (MessagingException e) {
-			throw new RuntimeException(e);
+			throw new MessagingException();
 		}
 	}
 	
