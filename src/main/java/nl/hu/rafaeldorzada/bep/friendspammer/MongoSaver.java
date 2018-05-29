@@ -4,12 +4,14 @@ import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.net.UnknownHostException;
 
 public class MongoSaver {
 	
 	public static boolean saveEmail(String to, String from, String subject, String text, Boolean html) {
+		Logger logger = LoggerFactory.getLogger(MongoSaver.class);
 		String userName = "test";
 		String password = "test";
 		String database = "school";
@@ -31,7 +33,7 @@ public class MongoSaver {
 			        .append("asHtml", html);
 			c.insertOne(doc);
 		} catch (MongoException mongoException) {
-			System.out.println("XXXXXXXXXXXXXXXXXX ERROR WHILE SAVING TO MONGO XXXXXXXXXXXXXXXXXXXXXXXXXX");
+			logger.info("XXXXXXXXXXXXXXXXXX ERROR WHILE SAVING TO MONGO XXXXXXXXXXXXXXXXXXXXXXXXXX");
 			mongoException.printStackTrace();
 			success = false;
 		}
@@ -41,9 +43,9 @@ public class MongoSaver {
 	}
 	
 	
-	public static void main(String ...args) throws UnknownHostException {
-		
-		System.out.println("test");
+	public static void main(String ...args) {
+		Logger logger = LoggerFactory.getLogger("test");
+		logger.info("test");
 	}
 
 }
