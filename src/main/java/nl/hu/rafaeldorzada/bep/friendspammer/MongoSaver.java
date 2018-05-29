@@ -2,7 +2,6 @@ package nl.hu.rafaeldorzada.bep.friendspammer;
 
 import com.mongodb.*;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoDatabase;
 import org.bson.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,9 +38,8 @@ public class MongoSaver {
 		MongoConfig mongoconfig = new MongoConfig();
 		MongoCollection<Document> c = mongoconfig.getConnection().getCollection("email");
 
-		Iterator<Document> it = c.find().iterator();
+		return c.find().iterator();
 
-		return it;
 	}
 
 	public static void main(String ...args) {

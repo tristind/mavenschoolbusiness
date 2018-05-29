@@ -7,15 +7,14 @@ import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
 
 public class MongoConfig {
-    private String username = "test";
-    private String password = "test";
-    private String database = "school";
-    private ServerAddress serveraddress = new ServerAddress("ds117540.mlab.com:17540/school", 27939);
+    private final static String username = "test";
+    private final static String password = "test";
+    private final static String database = "school";
+    private final static ServerAddress serveraddress = new ServerAddress("ds117540.mlab.com:17540/school", 27939);
 
     public MongoDatabase getConnection() {
         MongoCredential credential = MongoCredential.createCredential(username, password, database.toCharArray());
-        MongoDatabase db = new MongoClient(serveraddress, credential, MongoClientOptions.builder().build()).getDatabase(database);
-        return db;
+        return new MongoClient(serveraddress, credential, MongoClientOptions.builder().build()).getDatabase(database);
     }
 
 
