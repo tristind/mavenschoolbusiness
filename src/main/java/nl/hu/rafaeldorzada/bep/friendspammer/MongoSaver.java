@@ -11,19 +11,11 @@ public class MongoSaver {
 	
 	public static boolean saveEmail(String to, String from, String subject, String text, Boolean html) {
 		Logger logger = LoggerFactory.getLogger(MongoSaver.class);
-		String userName = "test";
-		String password = "test";
-		String database = "school";
-		
-		MongoCredential credential = MongoCredential.createCredential(userName, database, password.toCharArray());
-		
 		boolean success = true;
 		
-		try (MongoClient mongoClient = new MongoClient(new ServerAddress("ds117540.mlab.com:17540/school", 27939), credential, MongoClientOptions.builder().build()) ) {
-			
-			MongoDatabase db = mongoClient.getDatabase( database );
-			
-			MongoCollection<Document> c = db.getCollection("email");
+		try {
+			MongoConfig mongoconfig = new MongoConfig();
+			MongoCollection<Document> c = mongoconfig.getConnection().getCollection("email");
 			
 			Document  doc = new Document ("to", to)
 			        .append("from", from)

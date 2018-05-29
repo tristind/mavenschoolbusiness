@@ -14,23 +14,8 @@ public class EmailSender {
 		throw new IllegalStateException("Utility class");
 	}
 	public static void sendEmail(String subject, String to, String messageBody, boolean asHtml) throws MessagingException {
-
-		Properties props = new Properties();
-		props.put("mail.smtp.host", "smtp.mailtrap.io");
-		props.put("mail.smtp.port", "2525");
-		props.put("mail.smtp.auth", "true");
-
-		final String username = "eb3be6ab52ecd7";
-		final String password = "9c38225c543a30";
-
-		Session session = Session.getInstance(props,
-				  new Authenticator() {
-					  @Override
-					protected PasswordAuthentication getPasswordAuthentication() {
-
-						return new PasswordAuthentication(username, password);
-					}
-				  });
+		EmailConfig emailconfig = new EmailConfig();
+		Session session = emailconfig.getSession();
 		try {
 
 			Message message = new MimeMessage(session);
@@ -55,21 +40,8 @@ public class EmailSender {
 
 	public static void sendEmail(String subject, String[] toList, String messageBody, boolean asHtml) throws MessagingException {
 		Logger logger = LoggerFactory.getLogger(MongoSaver.class);
-		Properties props = new Properties();
-		props.put("mail.smtp.host", "smtp.mailtrap.io");
-		props.put("mail.smtp.port", "2525");
-		props.put("mail.smtp.auth", "true");
-
-		final String username = "eb3be6ab52ecd7";
-		final String password = "9c38225c543a30";
-
-		Session session = Session.getInstance(props,
-				  new Authenticator() {
-					@Override
-					protected PasswordAuthentication getPasswordAuthentication() {
-						return new PasswordAuthentication(username, password);
-					}
-				  });
+		EmailConfig emailconfig = new EmailConfig();
+		Session session = emailconfig.getSession();
 		try {
 
 			for (int index = 0; index < toList.length; index++) {
