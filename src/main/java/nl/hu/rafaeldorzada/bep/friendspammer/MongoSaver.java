@@ -16,7 +16,7 @@ public class MongoSaver {
 		
 		try {
 			MongoConfig mongoconfig = new MongoConfig();
-			MongoCollection<Document> c = mongoconfig.getConnection().getCollection("email");
+			MongoCollection<Document> c = mongoconfig.getDatabase(mongoconfig.getConnection()).getCollection("email");
 			
 			Document  doc = new Document ("to", to)
 			        .append("from", from)
@@ -36,8 +36,7 @@ public class MongoSaver {
 
 	public Iterator<Document> getAllMessages() {
 		MongoConfig mongoconfig = new MongoConfig();
-		MongoCollection<Document> c = mongoconfig.getConnection().getCollection("email");
-
+		MongoCollection<Document> c = mongoconfig.getDatabase(mongoconfig.getConnection()).getCollection("email");
 		return c.find().iterator();
 
 	}

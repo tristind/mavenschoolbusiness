@@ -7,8 +7,8 @@ import java.util.Properties;
 
 public class EmailConfig {
 
-    private final String username = "eb3be6ab52ecd7";
-    private final String password = "9c38225c543a30";
+    private String username = "eb3be6ab52ecd7";
+    private String password = "9c38225c543a30";
 
     public Session getSession() {
         Properties props = new Properties();
