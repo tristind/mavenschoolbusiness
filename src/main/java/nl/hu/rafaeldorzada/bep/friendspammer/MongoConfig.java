@@ -7,9 +7,9 @@ import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoDatabase;
 
 public class MongoConfig {
-    private final static String username = "test";
-    private final static String password = "test";
-    private final static String database = "school";
+    private final String username = "test";
+    private final String password = "test";
+    private final String database = "school";
     private final static ServerAddress serveraddress = new ServerAddress("ds117540.mlab.com:17540/school", 27939);
 
     public MongoDatabase getConnection() {
